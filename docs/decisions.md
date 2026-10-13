@@ -7,3 +7,6 @@
   1. *Oficjalne API komercyjne* – odrzucone ze względu na brak darmowych interfejsów programistycznych dla zewnętrznych deweloperów nieruchomościowych.
   2. *Tradycyjny web scraping* – odrzucone ze względu na dużą niestabilność i podatność na częste zmiany w szacie graficznej portalu.
 - **Uzasadnienie:** Standard JSON-LD dostarcza czyste, ustandaryzowane dane wprost od dostawcy (wymagane przez wyszukiwarki), co pozwala na niezawodne i powtarzalne budowanie warstwy surowej (Bronze) przy zachowaniu dobrych praktyk inżynierskich.
+
+## Decyzja 2: Wybór lokalnej bazy danych DuckDB do warstwy Silver
+- **Uzasadnienie:** DuckDB doskonale integruje się z biblioteką Pandas, pozwala na szybkie zapytania SQL na lokalnym sprzęcie bez konieczności stawiania ciężkich silników bazodanowych, idealnie wspierając architekturę analityczną projektu.

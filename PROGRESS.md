@@ -8,4 +8,9 @@
 - Skuteczne zapisywanie surowych paczek danych z metadanymi czasowymi w lokalnej warstwie **Bronze** (`data/bronze/`)
 
 ## Tydzień 2 (Oczekujący)
-- *Planowane rozpoczęcie:* Przejście do warstwy **Silver** (transformacja, spłaszczanie zagnieżdżonych struktur JSON do tabel, czyszczenie danych i zasilenie bazy DuckDB).
+- **Transformacja i warstwa Silver:**
+  - Napisanie skryptu parsowania i spłaszczania zagnieżdżonych struktur JSON-LD z warstwy Bronze (`src/transform.py`).
+  - Implementacja walidacji danych (obsługa braków cen, zabezpieczenie przed dzieleniem przez zero).
+  - Automatyczne obliczanie kluczowej metryki biznesowej: **stawki za 1 m² (`price_per_m2`)**.
+  - Zapis oczyszczonych danych do formatu płaskiego (`data/silver/clean_real_estate.csv`) oraz relacyjnej bazy analitycznej **DuckDB** (`data/real_estate.db`, tabela `silver_properties`).
+  - Pomyślne przetestowanie i weryfikacja poprawności transformacji (przetworzono pulę unikalnych ofert nieruchomości we Wrocławiu).
