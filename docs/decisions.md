@@ -9,4 +9,11 @@
 - **Uzasadnienie:** Standard JSON-LD dostarcza czyste, ustandaryzowane dane wprost od dostawcy (wymagane przez wyszukiwarki), co pozwala na niezawodne i powtarzalne budowanie warstwy surowej (Bronze) przy zachowaniu dobrych praktyk inżynierskich.
 
 ## Decyzja 2: Wybór lokalnej bazy danych DuckDB do warstwy Silver
+- **Data:** Tydzeiń 2
+- **Wybór:** Baza DuckDB
 - **Uzasadnienie:** DuckDB doskonale integruje się z biblioteką Pandas, pozwala na szybkie zapytania SQL na lokalnym sprzęcie bez konieczności stawiania ciężkich silników bazodanowych, idealnie wspierając architekturę analityczną projektu.
+
+## Decyzja 3: Strategia deduplikacji po adresie URL w warstwie Silver
+- **Data:** Tydzień 3
+- **Wybór:** Wprowadzenie deduplikacji w skrypcie `transform.py` oparty na unikalnym kluczu `url` z zachowaniem najnowszego rekordu (`keep="first"` po posortowaniu malejąco po `processed_at`).
+- **Uzasadnienie:** Wielokrotne pobieranie danych w różnych dniach powoduje powtarzanie się tych samych aktywnych ofert w plikach warstwy Bronze. Warstwa Silver zawiera wyłącznie unikalne, aktualne rekordy, co zapobiega sztucznemu zaniżaniu/zawyżaniu liczności ofert w analizach analitycznych.
