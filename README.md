@@ -14,7 +14,7 @@ Zbierane i przetwarzane w potoku dane muszą umożliwić odpowiedź na następuj
 1. Jakie są aktualne średnie ceny za metr kwadratowy (m²) mieszkań w poszczególnych dzielnicach Wrocławia?
 2. Które konkretne oferty aktywne na portalach (Otodom, Morizon) charakteryzują się ceną za m² znacząco niższą (np. o 15% lub więcej) od średniej rynkowej w danej lokalizacji?
 3. Gdzie we Wrocławiu występują największe dysproporcje cenowe w ramach tej samej dzielnicy?
-4. Jak liczba pokoi oraz powierzchnia użytkowa wpływają na stawkę za m² w ujęciu mikroregionalnym?
+4. Jak liczba pokoi wpływa na stawkę za m² w ujęciu mikroregionalnym?
 
 ## 3. Źródła danych i metodologia
 * **Źródła danych:** komercyjne portale ogłoszeniowe dla Wrocławia (Otodom, Morizon).
@@ -34,7 +34,40 @@ Zbierane i przetwarzane w potoku dane muszą umożliwić odpowiedź na następuj
 - `tests/` - automatyczne testy jakości danych.
 
 ## 6. Instrukcja uruchomienia krok po kroku
-*(Instrukcja zostanie uzupełniona w kolejnych tygodniach)*
+Aby w pełni odtworzyć środowisko, uruchomić potok danych oraz włączyć aplikację analityczną, należy wykoać poniższe kroki w terminalu z poziomu głównego katalogu projektu:
+
+### Krok 1: Wymagania wstępne i instalacja zależności
+Upewnienie się, o posiadaniu zainstalowanego Pythona (wersja 3.9 lub nowsza) oraz instalacja wymaganych bibliotek poleceniem:
+```bash
+pip install -r requirements.txt
+```
+
+### Krok 2: Uruchomienie potoku ETL
+
+* **Ekstrakcja (Warstwa Bronze):**
+  Pobiera surowe dane z zewnętrznych portali i zapisuje je w folderze `data/bronze/`.
+  ```bash
+  python src/extract.py
+  ```
+* **Transformacja i mapowanie adresów (Warstwa Silver & DuckDB):**
+  Oczyszcza dane, usuwa duplikaty po adresie URL, mapuje dzielnice i osiedla z urzędowego pliku EMUiA (`Adresy.xlsx`) oraz generuje relacyjną bazę danych DuckDB (`data/real_estate.db`).
+  ```bash
+  python src/transform.py
+  ```
+
+### Krok 3: Weryfikacja jakości danych
+Uruchomienie automatycznych testów walidujących poprawność strukturalną i dziedzinową zbioru danych:
+```bash
+python tests/test_quality.py
+```
+> ℹ️ *W przypadku wykrycia jakichkolwiek anomalii lub błędów jakościowych, skrypt zakończy działanie z kodem błędu, co gwarantuje pełną widoczność dla systemu automatyzacji.*
+
+### Krok 4: Uruchomienie aplikacji analitycznej (Streamlit)
+
+```bash
+streamlit run app.py
+```
+Komenda ta automatycznie uruchomi lokalny serwer i otworzy w Twojej przeglądarce interaktywną aplikację prezentującą wyniki analiz oraz okazje rynkowe.
 
 ## Wykorzystanie AI
-Asystenci AI zostali wykorzystani w projekcie do wsparcia przy projektowaniu architektury potoku, pisaniu skryptów transformujących dane oraz strukturze testów jakości. Wszelkie decyzje projektowe i kod zostały zweryfikowane przez autora.
+AI zostało wykorzystane w projekcie do wsparcia przy projektowaniu architektury potoku, pisaniu skryptów transformujących dane oraz strukturze testów jakości. Wszelkie decyzje projektowe i kod zostały zweryfikowane przez autora.
