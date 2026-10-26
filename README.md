@@ -13,7 +13,7 @@ Dzięki automatycznej integracji danych z wielu różnych portali ogłoszeniowyc
 Zbierane i przetwarzane w potoku dane muszą umożliwić odpowiedź na następujące pytania badawcze:
 1. Jakie są aktualne średnie ceny za metr kwadratowy (m²) mieszkań w poszczególnych dzielnicach Wrocławia?
 2. Które konkretne oferty aktywne na portalach (Otodom, Morizon) charakteryzują się ceną za m² znacząco niższą (np. o 15% lub więcej) od średniej rynkowej w danej lokalizacji?
-3. Gdzie we Wrocławiu występują największe dysproporcje cenowe między rynkiem wtórnym a nowym budownictwem w ramach tej samej dzielnicy?
+3. Gdzie we Wrocławiu występują największe dysproporcje cenowe w ramach tej samej dzielnicy?
 4. Jak liczba pokoi oraz powierzchnia użytkowa wpływają na stawkę za m² w ujęciu mikroregionalnym?
 
 ## 3. Źródła danych i metodologia
