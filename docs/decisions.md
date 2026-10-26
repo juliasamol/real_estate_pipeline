@@ -17,3 +17,8 @@
 - **Data:** Tydzień 3
 - **Wybór:** Wprowadzenie deduplikacji w skrypcie `transform.py` oparty na unikalnym kluczu `url` z zachowaniem najnowszego rekordu (`keep="first"` po posortowaniu malejąco po `processed_at`).
 - **Uzasadnienie:** Wielokrotne pobieranie danych w różnych dniach powoduje powtarzanie się tych samych aktywnych ofert w plikach warstwy Bronze. Warstwa Silver zawiera wyłącznie unikalne, aktualne rekordy, co zapobiega sztucznemu zaniżaniu/zawyżaniu liczności ofert w analizach analitycznych.
+
+## Decyzja 4: Rezygnacja ze sztywnego słownika na rzecz pliku referencyjnego EMUiA
+- **Data:** Tydzień 3
+- **Decyzja:** Wykorzystanie urzędowego pliku `Adresy.xlsx` (EMUiA Wrocław) zawierającego ulice i odpowiadające im regiony do przypisania jednolitych regionów administracyjnych miasta do ulic podanych w ogłoszeniach.
+- **Konsekwencje:** Pełna automatyzacja, zgodność z oficjalnym podziałem administracyjnym miasta.

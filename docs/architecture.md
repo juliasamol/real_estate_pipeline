@@ -12,5 +12,8 @@
      - Konwersja typów danych (np. mapowanie słownych liczby pokoi na int).
      - Czyszczenie danych (odrzucanie ofert bez ceny za m²).
      - **Deduplikacja:** Usuwanie duplikatów po unikalnym adresie `url` (priorytetyzacja najnowszego wpisu bazująca na `processed_at`).
+     - Warstwa Silver (`src/transform.py`) korzysta z lokalnego pliku referencyjnego `Adresy.xlsx` (oficjalna baza EMUiA Wrocław).
+     - Do ulic pobranych z platform z ogłoszeniami dodano dzielnicę i osiedle ze słownika `Adresy.xlsx`.
+     - Rekordy z nierozpoznaną ulicą zachowują puste wartości pól administracyjnych do późniejszego oznaczenia w interfejsie aplikacji (np. "Nie sprecyzowano dzielnicy").
 3. **Warstwa Gold (Planowana):**
    - Agregacje analityczne, wykrywanie anomalii cenowych, wskaźniki rynkowe i detekcja "okazji" inwestycyjnych przy użyciu zapytań SQL w DuckDB.
