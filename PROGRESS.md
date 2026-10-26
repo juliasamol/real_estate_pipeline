@@ -23,8 +23,7 @@
   - Wdrożono mechanizm deduplikacji po unikalnym adresie URL (`drop_duplicates(subset=["url"], keep="first")`), zachowujący najświeższe wpisy.
   - Skonfigurowano zapis plików CSV w kodowaniu **`utf-8-sig`** dla bezbłędnej obsługi polskich znaków w programie Excel.
   - Zaktualizowano tabelę analityczną `silver_properties` w lokalnej bazie **DuckDB** (`data/real_estate.db`).
-  <br>
-  <br>
+
 ### **Automatyczne mapowanie dzielnic i osiedli z bazy EMUiA Wrocław -Integracja urzędowej bazy adresowej (`Adresy.xlsx`):**
    - Wdrożono mechanizm wczytywania oficjalnych danych Ewidencji Miejscowości, Ulic i Adresów (EMUiA) Wrocławia.
    - Automatyczne algorytmy dopasowywania (bez sztywnego słownika w kodzie):
@@ -34,7 +33,7 @@
    - **Obsługa braków danych:**
      - Oferty, dla których nie udało się ustalić ulicy lub dopasować jej do urzędowej bazy, otrzymują puste wartości delegatury i osiedla (przeznaczone do oznaczenia w aplikacji jako „Nie sprecyzowano dzielnicy”).
 
-## Tydzień 4 (W trakcie)
+## Tydzień 4 (Zakończony)
 ### **Wdrożenie automatycznych testów jakości danych**
 - Utworzenie skryptu testującego (`tests/test_quality.py`)
 - Skonfigurowano automatyczne testy weryfikujące poprawność danych w warstwie Silver (`clean_real_estate.csv`).
@@ -44,3 +43,10 @@
    - **Zakres dziedzinowy (*Range / Domain*):** kontrola poprawności cen (`price_pln > 0`) oraz zakresu powierzchni (`10 m² <= area_m2 <= 1000 m²`).
    - **Dozwolone wartości (*Allowed Values*):** walidacja pochodzenia danych wyłącznie do zdefiniowanych źródeł (`otodom`, `morizon`).
 - W przypadku wykrycia jakichkolwiek anomalii, skrypt zwraca czytelny komunikat o niepowodzeniu oraz kończy działanie z kodem błędu (`exit(1)`), zapewniając pełną widoczność dla systemu automatyzacji.
+### Finalizacja warstwy Gold, aplikacji Streamlit
+- Zaimplementowano interaktywny dashboard w Streamlit zasilany bezpośrednio zapytaniami SQL z bazy DuckDB.
+- Domknięcie pytań analitycznych:
+  * Zakładka 1: Analiza średnich cen i median w podziale na dzielnice (tabele, wykresy słupkowe, metryki).
+  * Zakładka 2: Radar Okazji Cenowych (automatyczne wykrywanie ofert tańszych o min. 15% od średniej w dzielnicy wraz z bezpośrednimi, aktywnymi linkami do Otodomu i Morizona).
+  * Zakładka 3: Analiza dysproporcji i rozpiętości rynkowych (min, max, odchylenie standardowe).
+  * Zakładka 4: Wpływ liczby pokoi na stawkę za m².
