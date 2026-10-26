@@ -33,3 +33,14 @@
      - **Krok 3:** Dopasowanie heurystyczne po ostatnim słowie ulicy (np. obsługa skrótów lub uproszczonych nazw podawanych przez portale).
    - **Obsługa braków danych:**
      - Oferty, dla których nie udało się ustalić ulicy lub dopasować jej do urzędowej bazy, otrzymują puste wartości delegatury i osiedla (przeznaczone do oznaczenia w aplikacji jako „Nie sprecyzowano dzielnicy”).
+
+## Tydzień 4 (W trakcie)
+### **Wdrożenie automatycznych testów jakości danych**
+- Utworzenie skryptu testującego (`tests/test_quality.py`)
+- Skonfigurowano automatyczne testy weryfikujące poprawność danych w warstwie Silver (`clean_real_estate.csv`).
+- **Zaimplementowane reguły:**
+   - **Kompletność (*Completeness*):** weryfikacja braków wartości w kluczowych kolumnach (`price_pln`, `area_m2`, `url`).
+   - **Unikalność (*Uniqueness*):** sprawdzenie braku duplikatów po adresie URL.
+   - **Zakres dziedzinowy (*Range / Domain*):** kontrola poprawności cen (`price_pln > 0`) oraz zakresu powierzchni (`10 m² <= area_m2 <= 1000 m²`).
+   - **Dozwolone wartości (*Allowed Values*):** walidacja pochodzenia danych wyłącznie do zdefiniowanych źródeł (`otodom`, `morizon`).
+- W przypadku wykrycia jakichkolwiek anomalii, skrypt zwraca czytelny komunikat o niepowodzeniu oraz kończy działanie z kodem błędu (`exit(1)`), zapewniając pełną widoczność dla systemu automatyzacji.

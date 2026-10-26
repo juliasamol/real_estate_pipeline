@@ -21,4 +21,9 @@
 ## Decyzja 4: Rezygnacja ze sztywnego słownika na rzecz pliku referencyjnego EMUiA
 - **Data:** Tydzień 3
 - **Decyzja:** Wykorzystanie urzędowego pliku `Adresy.xlsx` (EMUiA Wrocław) zawierającego ulice i odpowiadające im regiony do przypisania jednolitych regionów administracyjnych miasta do ulic podanych w ogłoszeniach.
-- **Konsekwencje:** Pełna automatyzacja, zgodność z oficjalnym podziałem administracyjnym miasta.
+- **Uzasadnienie:** Pełna automatyzacja, zgodność z oficjalnym podziałem administracyjnym miasta.
+
+## Decyzja 5: Implementacja automatycznych testów jakości danych
+- **Data:** Tydzień 4
+- **Decyzja:** Stworzenie dedykowanego skryptu testowego (`tests/test_quality.py`) sprawdzającego min. 5 testów w oparciu o 3 rodzaje reguł z rygorystycznym warunkiem zakończenia procesu (`exit(1)` w przypadku błędu).
+- **Uzasadnienie:** Pełna przejrzystość stanu danych, natychmiastowe wykrywanie anomalii strukturalnych lub rynkowych.
