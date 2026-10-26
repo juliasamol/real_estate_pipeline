@@ -17,8 +17,9 @@ Zbierane i przetwarzane w potoku dane muszą umożliwić odpowiedź na następuj
 4. Jak liczba pokoi oraz powierzchnia użytkowa wpływają na stawkę za m² w ujęciu mikroregionalnym?
 
 ## 3. Źródła danych i metodologia
-* **Źródła danych:** Komercyjne portale ogłoszeniowe dla Wrocławia (Otodom, Morizon).
+* **Źródła danych:** komercyjne portale ogłoszeniowe dla Wrocławia (Otodom, Morizon).
 * **Metoda ekstrakcji:** cykliczny import  ustrukturyzowanych danych z formatu **JSON-LD (Schema.org)** osadzanego w kodzie stron, co zapewnia czystość pobieranych rekordów i zgodność z architekturą warstwową (Bronze -> Silver -> Gold).
+* **Legalność danych:** projekt pozyskuje wyłącznie ogólnodostępne dane rynkowe z publicznych portali ogłoszeniowych oraz otwarte rejestry publiczne. Scraping realizowany jest w sposób bezpieczny i zrównoważony, z poszanowaniem dobrych praktyk technicznych oraz bez naruszania mechanizmów zabezpieczających i uwierzytelniających serwery źródeł. Potok danych przetwarza wyłącznie parametry techniczno-ekonomiczne nieruchomości. W systemie nie są gromadzone ani przetwarzane żadne dane osobowe.
 
 ## 4. Stos technologiczny
 * **Język:** Python (requests, BeautifulSoup)
