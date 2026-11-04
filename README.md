@@ -24,7 +24,6 @@ Zbierane i przetwarzane w potoku dane muszą umożliwić odpowiedź na następuj
 ## 4. Stos technologiczny
 * **Język:** Python (requests, BeautifulSoup)
 * **Przechowywanie i przetwarzanie:** DuckDB
-* **Transformacje:** dbt (data build tool)
 * **Prezentacja / Wizualizacja:** Streamlit
 
 ## 5. Struktura repozytorium
