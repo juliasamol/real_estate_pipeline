@@ -16,7 +16,7 @@
 ## Decyzja 3: Strategia deduplikacji po adresie URL w warstwie Silver
 - **Data:** Tydzień 3
 - **Wybór:** Wprowadzenie deduplikacji w skrypcie `transform.py` oparty na unikalnym kluczu `url` z zachowaniem najnowszego rekordu (`keep="first"` po posortowaniu malejąco po `processed_at`).
-- **Uzasadnienie:** Wielokrotne pobieranie danych w różnych dniach powoduje powtarzanie się tych samych aktywnych ofert w plikach warstwy Bronze. Warstwa Silver zawiera wyłącznie unikalne, aktualne rekordy, co zapobiega sztucznemu zaniżaniu/zawyżaniu liczności ofert w analizach analitycznych.
+- **Uzasadnienie:** Wielcd okrotne pobieranie danych w różnych dniach powoduje powtarzanie się tych samych aktywnych ofert w plikach warstwy Bronze. Warstwa Silver zawiera wyłącznie unikalne, aktualne rekordy, co zapobiega sztucznemu zaniżaniu/zawyżaniu liczności ofert w analizach analitycznych.
 
 ## Decyzja 4: Rezygnacja ze sztywnego słownika na rzecz pliku referencyjnego EMUiA
 - **Data:** Tydzień 3
@@ -27,3 +27,13 @@
 - **Data:** Tydzień 4
 - **Decyzja:** Stworzenie dedykowanego skryptu testowego (`tests/test_quality.py`) sprawdzającego min. 5 testów w oparciu o 3 rodzaje reguł z rygorystycznym warunkiem zakończenia procesu (`exit(1)` w przypadku błędu).
 - **Uzasadnienie:** Pełna przejrzystość stanu danych, natychmiastowe wykrywanie anomalii strukturalnych lub rynkowych.
+
+## Decyzja 6: Wykorzystanie DuckDB jako centralnej bazy analitycznej w warstwie Gold
+- **Data:** Tydzień 4
+- **Decyzja:** Zastosowanie osadzonej bazy danych DuckDB (`data/real_estate.db`) jako głównego i bezpośredniego źródła dla warstwy prezentacji.
+- **Uzasadnienie:** Bardzo wysoka wydajność odczytu, pełne wsparcie dla standardowego SQL, spójność z warstwą Silver.
+
+## Decyzja 7: Rozdzielenie potoku ETL od interfejsu
+- **Data:** Tydzien 4
+- **Decyzja:** Rezygnacja z przycisku uruchamiającego ETL w aplikacji Streamlit na rzecz harmonogramu zadań systemu operacyjnego (Task Scheduler) działającego w godzinach nocnych.
+- **Uzasadnienie:** Bezpieczeństwo pozyskiwania danych, zachowanie zasad *Separation of Concerns* (oddzielenie warstwy danych od warstwy prezentacji) oraz gwarancja świeżości danych dla użytkownika aplikacji.

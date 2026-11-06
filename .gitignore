@@ -1,7 +1,15 @@
-data/
 __pycache__/
 .venv/
 .DS_Store
 *.duckdb
+*.db
+*.sqlite
 dbt_packages/
 target/
+
+# Ignorujemy zawartość folderów danych, ale robimy wyjątek i przepuszczamy Adresy.xlsx
+data/bronze/*
+!data/bronze/Adresy.xlsx
+
+data/silver/*
+data/gold/*
